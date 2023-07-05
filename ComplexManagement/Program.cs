@@ -1,3 +1,6 @@
+using ComplexManagement.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace ComplexManagement
 {
     public class Program
@@ -12,6 +15,10 @@ namespace ComplexManagement
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ComplexDBContext>(_ =>
+            _.UseSqlServer("Server=.;Database=ComplexManagementDB;Trusted_Connection=True;")
+            );
 
             var app = builder.Build();
 
