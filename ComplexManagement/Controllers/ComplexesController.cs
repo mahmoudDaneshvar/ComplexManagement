@@ -35,5 +35,17 @@ namespace ComplexManagement.Controllers
             _context.Complexes.Add(complex);
             _context.SaveChanges();
         }
+
+        [HttpGet]
+        public List<GetAllComplexesDto> GetAll()
+        {
+            return _context.Complexes
+                .Select(_ => new GetAllComplexesDto
+                {
+                    Id = _.Id,
+                    Name = _.Name,
+                    UnitCount = _.UnitCount,
+                }).ToList();
+        }
     }
 }
