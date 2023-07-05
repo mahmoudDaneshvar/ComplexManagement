@@ -27,6 +27,7 @@ namespace ComplexManagementMigration.Migrations
             Create.Table("Units")
                 .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                 .WithColumn("Name").AsString(50).NotNullable()
+                .WithColumn("ResidenceType").AsInt32().NotNullable()
                 .WithColumn("BlockId").AsInt32().NotNullable()
                     .ForeignKey("FK_Units_Blocks", "Blocks", "Id");
         }

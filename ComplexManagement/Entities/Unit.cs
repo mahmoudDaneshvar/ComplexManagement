@@ -2,8 +2,8 @@
 {
     public class Unit
     {
-        public ResidenceType ResidenceType { get; set; }
         public int Id { get; set; }
+        public ResidenceType ResidenceType { get; set; }
         public string Name { get; set; }
         public int BlockId { get; set; }
     }
