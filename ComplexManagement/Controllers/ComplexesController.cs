@@ -18,7 +18,7 @@ namespace ComplexManagement.Controllers
 
         [HttpPost]
 
-        public void Add(AddComplexDto dto)
+        public void Add([FromBody] AddComplexDto dto)
         {
             if (_context.Complexes
                 .Any(_ => _.Name == dto.Name))
@@ -47,5 +47,7 @@ namespace ComplexManagement.Controllers
                     UnitCount = _.UnitCount,
                 }).ToList();
         }
+
+        
     }
 }
