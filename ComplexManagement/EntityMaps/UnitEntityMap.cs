@@ -11,7 +11,7 @@ namespace ComplexManagement.EntityMaps
             entity.HasKey(_ => _.Id);
             entity.Property(x => x.Id).ValueGeneratedOnAdd();
             entity.Property(_ => _.Name).IsRequired().HasMaxLength(50);
-
+            entity.Property(_ => _.ResidenceType).IsRequired();
 
             entity.Property(_ => _.BlockId).IsRequired();
         }
