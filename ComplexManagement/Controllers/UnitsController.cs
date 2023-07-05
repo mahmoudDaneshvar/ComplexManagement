@@ -20,7 +20,7 @@ namespace ComplexManagement.Controllers
         }
 
         [HttpPost]
-        public void Add([FromBody]AddUnitDto dto)
+        public void Add([FromBody] AddUnitDto dto)
         {
             if (!_context.Blocks
                 .Any(_ => _.Id == dto.BlockId))
@@ -46,6 +46,19 @@ namespace ComplexManagement.Controllers
             _context.Units.Add(unit);
             _context.SaveChanges();
 
+        }
+
+        [HttpGet]
+        public List<GetAllUnitsDto> GetAll()
+        {
+            return _context.Units
+                .Select(_ => new GetAllUnitsDto
+                {
+                    Id = _.Id,
+                    Name = _.Name,
+                    BlockId = _.BlockId,
+                    ResidenceType = _.ResidenceType,
+                }).ToList();
         }
     }
 }
