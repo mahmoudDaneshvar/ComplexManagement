@@ -48,6 +48,34 @@ namespace ComplexManagement.Controllers
                 }).ToList();
         }
 
-        
+
+        [HttpPatch]
+        [Route("{id}")]
+        public void EditUnitCount([FromRoute] int id,
+            [FromBody] EditComplexUnitCountDto dto)
+
+        {
+            if (!_context.Complexes
+                .Any(_ => _.Id == id))
+            {
+                throw new ComplexNotFoundException();
+            }
+
+            var isExistUnit = (from block in _context.Blocks
+                               where block.ComplexId == id
+                               join unit in _context.Units
+                               on block.Id equals unit.BlockId
+                               select unit).Any();
+
+            if (isExistUnit)
+            {
+                throw new ComplexHasUnitException();
+            }
+
+            _context.Complexes
+                .First(_ => _.Id == id).UnitCount = dto.UnitCount;
+            _context.SaveChanges();
+        }
+
     }
 }
